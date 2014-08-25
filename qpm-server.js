@@ -18,7 +18,7 @@ router.get('/api/module', function(req, res) {
     if (!file) return res.send(400);
 
     debug('File being requested', file);
-    res.sendFile('/tmp/' + file + '.tar');
+    res.sendFile('/tmp/qpm/' + file + '.tar.gz');
 });
 
 router.post('/api/module', function(req, res) {
