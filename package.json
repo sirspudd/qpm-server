@@ -4,6 +4,7 @@
   "description": "qpm package server",
   "main": "qpm-server.js",
   "scripts": {
+    "start": "node ./qpm-server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
