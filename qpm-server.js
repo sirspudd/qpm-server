@@ -34,9 +34,12 @@ router.get('/api/module', function(req, res) {
 router.post('/api/publish', function(req, res) {
     req.pipe(req.busboy);
     req.busboy.on('file', function(fieldname, file, filename) {
-        debug('File being requested ' + filename);
-        file.pipe(fs.createWriteStream('/tmp/' + filename)).on('end', function() { res.send(200); });
-        // ...
+        debug('File being published ' + filename);
+        file.pipe(fs.createWriteStream('/tmp/' + filename));
+        file.on('end', function() { 
+            console.log('Sending back success');
+            res.send(200); 
+        });
     });
 });
 
