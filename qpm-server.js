@@ -6,7 +6,11 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     busboy = require('connect-busboy'),
     debug = require('debug')('qpm-server'),
-    fs = require('fs');
+    fs = require('fs'),
+    os = require('os');
+
+console.log(os.tmpdir());
+fs.writeFileSync(os.tmpdir()+'/fuck-girish', 'muppet');
 
 var app = express();
 var router = new express.Router();
