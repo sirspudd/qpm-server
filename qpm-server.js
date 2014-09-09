@@ -18,7 +18,7 @@ var busboyLimits = {
   }
 };
 
-var pkgdir = '/tmp/qpm-server';
+var pkgdir = './qpm-server';
 fs.mkdirSync(pkgdir)
 
  app.use(busboy(busboyLimits))
