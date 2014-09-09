@@ -18,6 +18,9 @@ var busboyLimits = {
   }
 };
 
+var pkgdir = '/tmp/qpm-server';
+fs.mkdirSync(pkgdir)
+
  app.use(busboy(busboyLimits))
     .use(bodyParser.json({strict: true }))
     .use(bodyParser.urlencoded({extended: true }))
@@ -28,14 +31,14 @@ router.get('/api/module', function(req, res) {
     if (!file) return res.send(400);
 
     debug('File being requested', file);
-    res.sendFile('/tmp/qpm/' + file + '.tar.gz');
+    res.sendFile(pkgdir + file + '.tar.gz');
 });
 
 router.post('/api/publish', function(req, res) {
     req.pipe(req.busboy);
     req.busboy.on('file', function(fieldname, file, filename) {
         debug('File being published ' + filename);
-        file.pipe(fs.createWriteStream('/tmp/' + filename));
+        file.pipe(fs.createWriteStream(pkgdir + filename));
         file.on('end', function() { 
             console.log('Sending back success');
             res.send(200); 
