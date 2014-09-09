@@ -11,6 +11,7 @@ var express = require('express'),
 
 console.log(os.tmpdir());
 fs.writeFileSync(os.tmpdir()+'/fuck-girish', 'muppet');
+process.on('uncaughtException', console.error);
 
 var app = express();
 var router = new express.Router();
