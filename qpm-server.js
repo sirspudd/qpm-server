@@ -9,10 +9,6 @@ var express = require('express'),
     fs = require('fs'),
     os = require('os');
 
-console.log(os.tmpdir());
-fs.writeFileSync(os.tmpdir()+'/fuck-girish', 'muppet');
-process.on('uncaughtException', console.error);
-
 var app = express();
 var router = new express.Router();
 
@@ -24,7 +20,11 @@ var busboyLimits = {
 };
 
 var pkgdir = '/tmp/qpm-server';
-fs.mkdirSync(pkgdir)
+try {
+  fs.mkdirSync(pkgdir);
+} catch(err) {
+  console.log(err);
+}
 
  app.use(busboy(busboyLimits))
     .use(bodyParser.json({strict: true }))
